@@ -1,0 +1,19 @@
+{
+  "name": "mool_finance_assignment",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000m\u0000o\u0000o\u0000l\u0000_\u0000b\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000_\u0000a\u0000s\u0000s\u0000i\u0000g\u0000n\u0000m\u0000e\u0000n\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.6.3"
+  }
+}
