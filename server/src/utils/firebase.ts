@@ -51,29 +51,3 @@ export const pollEmailVerification = async (
   return false;
 };
 
-export const signInWithGoogle = async () => {
-  try {
-    const googleProvider = new GoogleAuthProvider()
-    const result = await signInWithPopup(auth, googleProvider);
-    // This gives you a Google Access Token
-    const credential:any = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info
-    const user = result.user;
-    return {
-      success: true,
-      user,
-      token
-    };
-  } catch (error:any) {
-    return {
-      success: false,
-      error: {
-        code: error.code,
-        message: error.message,
-        email: error.customData?.email,
-        credential: GoogleAuthProvider.credentialFromError(error)
-      }
-    };
-  }
-};
