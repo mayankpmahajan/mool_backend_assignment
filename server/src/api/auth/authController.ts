@@ -14,12 +14,12 @@ import { sign } from "jsonwebtoken";
 import { z } from "zod";
 
 export async function registerController(req: Request, res: Response) {
-  let { email, password } = userZodSchema.parse(req.body);
-  console.log("received")
+  
   try {
+    let { email, password } = userZodSchema.parse(req.body);
     //check if user exsists
     const ifExists = await User.find({ email: email });
-
+    console.log(5555555555555555555);
     //if user exists, send res of user exists
     if (ifExists.length > 0) {
       sendErrorResponse(res, 409, "User already exists");
@@ -43,6 +43,9 @@ export async function registerController(req: Request, res: Response) {
       sendErrorResponse(res, 500, "", "failed to register user");
     }
   } catch (err) {
+    if (err instanceof z.ZodError) {
+      sendErrorResponse(res, 400, "Invalid Input", err.issues);
+    }
     logger.error("Error registering  user with error message:" + err);
     sendErrorResponse(res, 500, "", err);
   }
@@ -129,7 +132,7 @@ export async function resetPasswordsController(req:Request, res:Response){
 
     const user = await User.findByIdAndUpdate(id, {password: password});
 
-    sendSuccessResponse(res, 201, "Password reset done successfully", res);
+    sendSuccessResponse(res, 201, "Password reset done successfully", {});
   } catch(error){
     logger.error("failed to reset password with the error:"+ error);
     sendErrorResponse(res, 500, "Internal Server Error", error);
