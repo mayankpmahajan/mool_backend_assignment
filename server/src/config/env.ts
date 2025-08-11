@@ -1,0 +1,1 @@
+// as the setup gets big all the env variables are imported here and then exported from here throughout the codebase

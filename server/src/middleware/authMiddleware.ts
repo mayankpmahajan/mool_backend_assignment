@@ -9,7 +9,6 @@ export async function authMiddleware(
 ) {
   try {
     const authHeader = req.headers.authorization || "";
-    console.log(authHeader);
 
     if (!authHeader || !authHeader?.startsWith("Bearer ")) {
       sendErrorResponse(res, 401, "No Token in Header"); // Added return
@@ -20,7 +19,6 @@ export async function authMiddleware(
 
     const payload = verify(token, process.env.JWT_SECRET_KEY!);
 
-    console.log("final");
     res.locals.payload = payload;
     next();
   } catch (error) {
